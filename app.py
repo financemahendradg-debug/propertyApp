@@ -149,19 +149,20 @@ if st.session_state.user:
                     st.rerun()
         else:
             st.info("No pending users.")
+                # -------- ADD PROPERTY --------
+        st.header("Add Property")
+        title = st.text_input("Property Title")
+        description = st.text_area("Property Description")
+        image = st.file_uploader("Upload Image", type=["jpg", "png", "jpeg"])
+    
+        if st.button("Add Property"):
+            if title and description and image:
+                save_property(title, description, image, user[1])
+                st.success("Property added successfully!")
+            else:
+                st.warning("Please complete all fields.")
 
-    # -------- ADD PROPERTY --------
-    st.header("Add Property")
-    title = st.text_input("Property Title")
-    description = st.text_area("Property Description")
-    image = st.file_uploader("Upload Image", type=["jpg", "png", "jpeg"])
 
-    if st.button("Add Property"):
-        if title and description and image:
-            save_property(title, description, image, user[1])
-            st.success("Property added successfully!")
-        else:
-            st.warning("Please complete all fields.")
 
     # -------- VIEW PROPERTIES --------
     st.header("Property Listings")
